@@ -1,0 +1,590 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<style>
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  *,
+  *::before,
+  *::after {
+    
+      box-sizing: border-box;
+  }
+  .cy-wrap {
+      font-family: "Inter", system-ui, sans-serif;
+      background: #0f0e0c;
+      color: #f2ece4;
+      padding: 0;
+      margin: 0;
+  }
+  .cy-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 56px;
+      border-bottom: 1px solid #2a2520;
+  }
+  .cy-logo {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #f2ece4;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+  }
+  .eq {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 16px;
+  }
+  .eq span {
+      width: 3px;
+      background: #d98c4a;
+      border-radius: 2px;
+      animation: bounce 1.1s ease-in-out infinite;
+  }
+  .eq span:nth-child(1) {
+      height: 40%;
+      animation-delay: -0.9s;
+  }
+  .eq span:nth-child(2) {
+      height: 75%;
+      animation-delay: -0.5s;
+  }
+  .eq span:nth-child(3) {
+      height: 100%;
+      animation-delay: -0.2s;
+  }
+  .eq span:nth-child(4) {
+      height: 55%;
+      animation-delay: 0s;
+  }
+  @keyframes bounce {
+      0%,
+      100% {
+          transform: scaleY(0.35);
+      }
+      50% {
+          transform: scaleY(1);
+      }
+  }
+  .cy-hero {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      padding: 72px 48px 64px;
+      max-width: 900px;
+      margin: 0 auto;
+  }
+  .cy-hero-text {
+      flex: 1;
+  }
+  .cy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #d98c4a;
+      background: rgba(217, 140, 74, 0.1);
+      border: 1px solid rgba(217, 140, 74, 0.25);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 22px;
+      font-family: "IBM Plex Mono", monospace;
+  }
+  .cy-pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d98c4a;
+  }
+  .cy-h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin: 0 0 16px;
+      color: #f2ece4;
+  }
+  .cy-h1 em {
+      font-style: normal;
+      color: #d98c4a;
+  }
+  .cy-sub {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #7a7068;
+      margin: 0 0 32px;
+      max-width: 400px;
+  }
+  .cy-perks {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+  .cy-perks li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #a89f95;
+  }
+  .cy-perks li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #d98c4a;
+      flex-shrink: 0;
+  }
+  .cy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #d98c4a;
+      color: #1b1815;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 24px;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+  }
+  .cy-btn:hover {
+      background: #e29a5c;
+  }
+  .cy-btn-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+  }
+  .cy-note {
+      display: block;
+      margin-top: 10px;
+      font-size: 11px;
+      color: #5a5249;
+      letter-spacing: 0.04em;
+      font-family: "IBM Plex Mono", monospace;
+  }
+  .cy-phone-wrap {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+  }
+  .cy-phone {
+      width: 150px;
+      height: 280px;
+      background: #171512;
+      border: 2px solid #332d26;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+  }
+  .cy-phone::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 5px;
+      border-radius: 3px;
+      background: #2a2520;
+  }
+  .cy-screen {
+      position: absolute;
+      inset: 26px 8px 8px;
+      background: #1b1815;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 12px;
+      gap: 10px;
+  }
+  .cy-screen-logo {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f2ece4;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+  }
+  .cy-screen-eq {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+  }
+  .cy-screen-eq span {
+      width: 2px;
+      background: #d98c4a;
+      border-radius: 1px;
+      animation: bounce 1.1s ease-in-out infinite;
+  }
+  .cy-screen-eq span:nth-child(1) {
+      height: 35%;
+      animation-delay: -0.9s;
+  }
+  .cy-screen-eq span:nth-child(2) {
+      height: 70%;
+      animation-delay: -0.5s;
+  }
+  .cy-screen-eq span:nth-child(3) {
+      height: 100%;
+      animation-delay: -0.2s;
+  }
+  .cy-screen-eq span:nth-child(4) {
+      height: 50%;
+      animation-delay: 0s;
+  }
+  .cy-screen-url {
+      background: #252018;
+      border-radius: 6px;
+      padding: 7px 9px;
+      font-size: 9px;
+      color: #5a5249;
+      font-family: "IBM Plex Mono", monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+  .cy-screen-thumb {
+      height: 54px;
+      background: #252018;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .cy-screen-thumb-icon {
+      width: 20px;
+      height: 20px;
+      fill: #332d26;
+  }
+  .cy-screen-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+  }
+  .cy-screen-title {
+      font-size: 9px;
+      font-weight: 600;
+      color: #a89f95;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+  }
+  .cy-screen-chips {
+      display: flex;
+      gap: 4px;
+  }
+  .cy-screen-chip {
+      font-size: 8px;
+      background: #252018;
+      border: 1px solid #332d26;
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: #5a5249;
+      font-family: "IBM Plex Mono", monospace;
+  }
+  .cy-screen-chip.ac {
+      border-color: #d98c4a;
+      color: #d98c4a;
+  }
+  .cy-screen-bar {
+      height: 4px;
+      background: #252018;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 4px;
+  }
+  .cy-screen-fill {
+      height: 100%;
+      width: 70%;
+      background: #d98c4a;
+      border-radius: 2px;
+      animation: fillbar 2s ease-in-out infinite alternate;
+  }
+  @keyframes fillbar {
+      0% {
+          width: 25%;
+      }
+      100% {
+          width: 80%;
+      }
+  }
+  .cy-screen-dl {
+      margin-top: auto;
+      background: #d98c4a;
+      border-radius: 6px;
+      padding: 7px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #1b1815;
+      text-align: center;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+  }
+  .cy-divider {
+      height: 1px;
+      background: #2a2520;
+      margin: 0 48px;
+  }
+  .cy-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: #2a2520;
+      margin: 0;
+  }
+  .cy-feat {
+      background: #0f0e0c;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+  }
+  .cy-feat-icon {
+      font-size: 20px;
+      color: #d98c4a;
+  }
+  .cy-feat-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #f2ece4;
+  }
+  .cy-feat-desc {
+      font-size: 13px;
+      color: #7a7068;
+      line-height: 1.6;
+  }
+  .cy-footer {
+      padding: 20px 48px;
+      border-top: 1px solid #2a2520;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  .cy-footer-brand {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #5a5249;
+  }
+  .cy-footer-note {
+      font-size: 11px;
+      color: #36302a;
+      font-family: "IBM Plex Mono", monospace;
+  }
+  @media (max-width: 620px) {
+      .cy-hero {
+          flex-direction: column;
+          padding: 40px 24px;
+          gap: 40px;
+      }
+      .cy-phone-wrap {
+          display: none;
+      }
+      .cy-divider {
+          margin: 0 24px;
+      }
+      .cy-feat {
+          padding: 20px 24px;
+      }
+      .cy-footer {
+          padding: 16px 24px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+      }
+  }
+</style>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400&display=swap"
+  rel="stylesheet"
+/>
+
+
+<body>
+
+
+  <div class="cy-wrap">
+    <nav class="cy-nav">
+        <a class="cy-logo" href="#">
+            <div class="eq" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            cytdlp
+        </a>
+        <span
+            style="
+                font-size: 11px;
+                color: #5a5249;
+                font-family: 'IBM Plex Mono', monospace;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+            "
+            >Android app</span
+        >
+    </nav>
+
+    <div class="cy-hero">
+        <div class="cy-hero-text">
+            <div class="cy-pill">Android app</div>
+            <h1 class="cy-h1">
+                Download <em>anything.</em><br />Right on your phone.
+            </h1>
+            <p class="cy-sub">
+                cytdlp runs entirely on your device — no server, no wait, no
+                account. Paste a link, pick a format, done.
+            </p>
+            <ul class="cy-perks">
+                <li>Video up to 4K — MP4 with merged audio</li>
+                <li>Audio extraction as MP3</li>
+                <li>YouTube, SoundCloud, Twitter &amp; thousands more</li>
+                <li>Files go straight to your storage</li>
+              </ul>
+            <a class="cy-btn" href="./cytdlp.apk" download>
+                <svg
+                    class="cy-btn-icon"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M12 16l-5-5 1.41-1.41L11 13.17V4h2v9.17l2.59-2.58L17 11l-5 5zm-7 2h14v2H5v-2z"
+                    />
+                </svg>
+                Download APK
+            </a>
+            <span class="cy-note"
+                >Android 7.0+ &nbsp;·&nbsp; Enable "Install unknown apps" in
+                settings</span
+            >
+        </div>
+
+        <div class="cy-phone-wrap" aria-hidden="true">
+            <div class="cy-phone">
+                <div class="cy-screen">
+                    <div class="cy-screen-logo">
+                        <div class="cy-screen-eq">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                        cytdlp
+                    </div>
+                    <div class="cy-screen-url">
+                        youtube.com/watch?v=dQw4w9WgXcQ
+                    </div>
+                    <div class="cy-screen-thumb">
+                        <svg
+                            class="cy-screen-thumb-icon"
+                            viewBox="0 0 24 24"
+                            fill="#332D26"
+                        >
+                            <path
+                                d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 000-1.69L9.54 5.98A1 1 0 008 6.82z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="cy-screen-info">
+                        <div class="cy-screen-title">
+                            Never Gonna Give You Up
+                        </div>
+                        <div class="cy-screen-chips">
+                            <span class="cy-screen-chip">Rick Astley</span>
+                            <span class="cy-screen-chip ac">3:32</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="
+                                font-size: 8px;
+                                color: #5a5249;
+                                margin-bottom: 4px;
+                                font-family: 'IBM Plex Mono', monospace;
+                            "
+                        >
+                            Downloading MP4 · 1080p
+                        </div>
+                        <div class="cy-screen-bar">
+                            <div class="cy-screen-fill"></div>
+                        </div>
+                    </div>
+                    <div class="cy-screen-dl">Save to device</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cy-divider"></div>
+
+    <div class="cy-features">
+        <div class="cy-feat">
+            <i class="ti ti-device-mobile cy-feat-icon" aria-hidden="true"></i>
+            <div class="cy-feat-title">On-device processing</div>
+            <p class="cy-feat-desc">
+                Everything runs locally. No data sent to any server.
+            </p>
+        </div>
+        <div class="cy-feat">
+            <i class="ti ti-video cy-feat-icon" aria-hidden="true"></i>
+            <div class="cy-feat-title">Video up to 4K</div>
+            <p class="cy-feat-desc">
+                Pick any resolution from 144p to 4K. Clean MP4 output.
+            </p>
+        </div>
+        <div class="cy-feat">
+            <i class="ti ti-music cy-feat-icon" aria-hidden="true"></i>
+            <div class="cy-feat-title">Audio as MP3</div>
+            <p class="cy-feat-desc">
+                Extract audio at the best available bitrate.
+            </p>
+        </div>
+        <div class="cy-feat">
+            <i class="ti ti-link cy-feat-icon" aria-hidden="true"></i>
+            <div class="cy-feat-title">1000+ sites</div>
+            <p class="cy-feat-desc">
+                Powered by yt-dlp — YouTube, SoundCloud, Twitter &amp; more.
+            </p>
+        </div>
+    </div>
+
+    <footer class="cy-footer">
+        <span class="cy-footer-brand">cytdlp</span>
+        <span class="cy-footer-note"
+            >Only download content you have the right to download.</span
+        >
+    </footer>
+</div>
+  
+</body>
+</html>
